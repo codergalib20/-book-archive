@@ -63,3 +63,16 @@
     background: #212121;
     color: #fff;
 }
+
+
+
+#result{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+.book-item{
+  width: 100%;
+  max-width: 300px;
+}
