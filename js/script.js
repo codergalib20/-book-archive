@@ -14,20 +14,22 @@ document.getElementById('search-btn').addEventListener('click', () => {
         searchText.value = '';
         fetch(url)
         .then(res => res.json())
-        .then(data=>showBook(data.docs))
+        .then(data=>showBook(data))
  
 })
 const showBook = books => {
+    const allWebBook = books.numFound
+    books = books.docs
     const newArr = books.filter(book => book.cover_i !== undefined && book.author_name !== undefined && book.publisher !== undefined && book.title !== undefined && book.first_publish_year !== undefined)
     if (newArr.length === 0) {
         bookTotals.innerHTML = '';
         allBooks.innerHTML = '';
         searching.innerHTML='NO RESULT FOUND'
     }
-    else {
+    // else {
         const searchingResult = document.createElement('h5')
         searchingResult.classList.add('searching-result')
-        searchingResult.innerHTML = `SEARCH RESULT ${newArr.length}`
+        searchingResult.innerHTML = `Showing result ${newArr.length} of ${allWebBook}`
         bookTotals.innerHTML = '';
         bookTotals.appendChild(searchingResult)
 
@@ -53,4 +55,4 @@ const showBook = books => {
         
     }
 
-}
+// }
