@@ -54,9 +54,3 @@ const showBook = books => {
     }
 
 }
-
-
-{/* <div class="card-body" >
-       <img style="height:300px" src="" class="card-img-top img-fluid" alt="...">
-        <h5 class="card-title text-danger opacity-50">Book Name: ${book.title}</h5>
-       <div class="d-flex justify-content-between > <p class="card-text fw-bold opacity-75">Author: ${book.author_name[0]}</p>   <p class="card-text  fw-bold opacity-75">1st Publish:${book.first_publish_year}</p></div> */}
