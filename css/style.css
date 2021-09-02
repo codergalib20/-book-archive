@@ -11,10 +11,15 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Source Sans Pro", sans-serif;
+  font-weight: 500;
+}
+body {
+  background: #dcdde14b;
+  min-height: 100vh;
 }
 .container {
   width: 100%;
-  max-width: 1190px;
+  max-width: 900px;
   margin: 0 auto;
 }
 
@@ -42,8 +47,8 @@
   font-size: 1rem;
   color: #212121;
 }
-#search-filed::placeholder{
-    color: #212121;
+#search-filed::placeholder {
+  color: #212121;
 }
 #search-btn {
   width: 30%;
@@ -59,20 +64,59 @@
   -o-transition: all 0.3s linear;
   -ms-transition: all 0.3s linear;
 }
-#search-btn:hover{
-    background: #212121;
-    color: #fff;
+#search-btn:hover {
+  background: #212121;
+  color: #fff;
 }
 
-
-
-#result{
+#result {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   margin-top: 2rem;
 }
-.book-item{
-  width: 100%;
-  max-width: 300px;
+.book-item {
+  width: 32%;
+  /* text-align: center; */
+  margin-top: 1rem;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 0 10px 5px #0b6df628;
+}
+.book-item h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+.book-item h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.book-item h4 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+.book-img img {
+  min-width: 100%;
+}
+.book-info {
+  padding: 1rem;
+}
+
+/*
+==========================================
+                Responsive Style
+==========================================
+*/
+@media only screen and (max-width: 768px) {
+  .book-item {
+    width: 46%;
+  }
+}
+@media only screen and (max-width: 450px) {
+  .book-item {
+    width: 100%;
+  }
 }
