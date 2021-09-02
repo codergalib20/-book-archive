@@ -1,43 +1,62 @@
-// Html Stracture Added_____
-const searchFiled = document.getElementById('search-filed');
-const searchBtn = document.getElementById('search-btn');
-const resultBooks = document.getElementById('result');
+const allBooks = document.getElementById('result');
+const bookTotals = document.getElementById('totals');
+const searching = document.getElementById('searching');
+const searchText = document.getElementById('search-filed');
 
 
-const bookName = name => {
-    fetch(`http://openlibrary.org/search.json?q=${name}`)
-    .then(res => res.json())
-    .then(data => displayBook(data.docs));
-}
-
-// Event Listener_____
-searchBtn.addEventListener('click', () => {
-    // Book Name Send Form Input
-    bookName(searchFiled.value);   
-
-   // Clear Search Filed
-   searchFiled.value = '';
-})
-
-const displayBook = books => {
-     books.forEach(book => {
-         const bookCover = `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`;
-         const bookAuthors = `https://openlibrary.org/authors/${book.authhorKey}.json`
-          console.log(book);
-        //   console.log(bookCover);
-        //   console.log(bookAuthors)
-        
-        const bookItem = document.createElement('div');
-        bookItem.classList.add('book-item')
-        bookItem.innerHTML = 
-        `
-        <div>
-           <img src="${bookCover}" alt="">
+document.getElementById('search-btn').addEventListener('click', () => {
+    searching.innerHTML = `
+        <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
         </div>
-        <h2>${book.author_name}<h2>
-        <h2>${book.publisher}</h2>
-        <h2>${book.publish_date}</h2>
-        `;
-        resultBooks.appendChild(bookItem);
-     });
+    `
+        const url = `https://openlibrary.org/search.json?q=${searchText.value}`
+        searchText.value = '';
+        fetch(url)
+        .then(res => res.json())
+        .then(data=>showBook(data.docs))
+ 
+})
+const showBook = books => {
+    const newArr = books.filter(book => book.cover_i !== undefined && book.author_name !== undefined && book.publisher !== undefined && book.title !== undefined && book.first_publish_year !== undefined)
+    if (newArr.length === 0) {
+        bookTotals.innerHTML = '';
+        allBooks.innerHTML = '';
+        searching.innerHTML='NO RESULT FOUND'
+    }
+    else {
+        const searchingResult = document.createElement('h5')
+        searchingResult.classList.add('searching-result')
+        searchingResult.innerHTML = `SEARCH RESULT ${newArr.length}`
+        bookTotals.innerHTML = '';
+        bookTotals.appendChild(searchingResult)
+
+        searching.innerHTML = '';
+        allBooks.innerHTML = '';
+        newArr.forEach(book => {
+            // Create and Update EverySingle Book item
+            const newDiv = document.createElement('div')
+            newDiv.classList.add('book-item')
+            newDiv.innerHTML = 
+            `  <div class="book-img">
+                    <img src="https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg" alt="">
+               </div>
+               <div class="book-info">
+                    <h2>Book Name : ${book.title}<h2>
+                    <h3>Author Name : ${book.author_name}<h3>
+                    <h4>Publisher Name : ${book.publisher}</h4>
+                    <h5>First Publish Year : ${book.first_publish_year}</h5>
+                </div>
+            `
+            allBooks.appendChild(newDiv)
+        })
+        
+    }
+
 }
+
+
+{/* <div class="card-body" >
+       <img style="height:300px" src="" class="card-img-top img-fluid" alt="...">
+        <h5 class="card-title text-danger opacity-50">Book Name: ${book.title}</h5>
+       <div class="d-flex justify-content-between > <p class="card-text fw-bold opacity-75">Author: ${book.author_name[0]}</p>   <p class="card-text  fw-bold opacity-75">1st Publish:${book.first_publish_year}</p></div> */}

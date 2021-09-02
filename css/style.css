@@ -10,6 +10,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-weight: 500;
   font-family: "Source Sans Pro", sans-serif;
 }
 .container {
@@ -42,37 +43,101 @@
   font-size: 1rem;
   color: #212121;
 }
-#search-filed::placeholder{
-    color: #212121;
+#search-filed::placeholder {
+  color: #212121;
 }
 #search-btn {
   width: 30%;
   border: 2px solid #212121;
-  background: transparent;
+  background: #212121;
   outline: none;
   padding: 0.3rem 1rem;
   font-size: 1rem;
-  color: #212121;
+  color: #fff;
   cursor: pointer;
   transition: all 0.3s linear;
   -moz-transition: all 0.3s linear;
   -o-transition: all 0.3s linear;
   -ms-transition: all 0.3s linear;
 }
-#search-btn:hover{
-    background: #212121;
-    color: #fff;
+#search-btn:hover {
+  background: #fff;
+  color: #212121;
 }
 
-
-
-#result{
+#result {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   margin-top: 2rem;
 }
-.book-item{
-  width: 100%;
-  max-width: 300px;
+.book-item {
+  width: 32%;
+  margin-top: 1rem;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  overflow: hidden;
+  color: #212121;
+  box-shadow: 0 0 3px 3px #21212136;
+}
+.book-item h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+.book-item h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+.book-item h4 {
+  font-size: 1rem;
+  margin-bottom: 0.4rem;
+}
+.book-item h5 {
+  font-size: 1rem;
+}
+.book-img{
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.book-img img{
+  min-height: 200px;
+  min-width: 100%;
+}
+.book-info{
+  padding: 1rem;
+}
+#totals,
+#searching{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #212121;
+  margin-top: 0.7rem;
+}
+.searching-result{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/*
+=========================================
+          Responsive Section CSS
+=========================================
+*/
+
+@media only screen and (max-width: 725px) {
+    .book-item{
+      width: 49%;
+    }
+}
+@media only screen and (max-width: 425px) {
+  .book-item{
+    width: 100%;
+  }
 }
